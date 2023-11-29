@@ -7,7 +7,7 @@ JavaScript живёт в асинхронном мире и большинств
 
 Модуль `parser.js`:
 
-```
+```js
 export default function json(data) {
   return new Promise((resolve, reject) => {
     // эмуляция обработки ArrayBuffer
@@ -18,7 +18,7 @@ export default function json(data) {
 }
 ```
 Модуль `reader.js`:
-```
+```js
 export default function read() {
   return new Promise((resolve, reject) => {
     // эмуляция чтения файла
@@ -37,7 +37,7 @@ export default function read() {
 }
 ```
 Пример использования класса (если бы это был синхронный код)
-```
+```js
 export default class GameSavingLoader {
   static load() {
     const data = read(); // возвращается Promise!
@@ -50,7 +50,7 @@ export default class GameSavingLoader {
 Вам нужно переписать метод `load` так, чтобы он возвращал `Promise` с данными (см. формат ниже).
 
 Спецификации объекта типа `GameSaving`:
-```
+```js
 {
   "id": <number>, // id сохранения
   "created": <timestamp>, // timestamp создания
@@ -63,7 +63,7 @@ export default class GameSavingLoader {
 }
 ```
 Т.е. итоговый ваш код должен работать так (модуль `app.js`):
-```
+```js
 GameSavingLoader.load().then((saving) => {
   // saving объект класса GameSaving
 }, (error) => {
