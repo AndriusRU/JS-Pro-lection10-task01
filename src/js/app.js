@@ -1,6 +1,12 @@
 // TODO: write your code here
-import sum from './basic';
+import GameSaving from "./class/game-saving";
+import GameSavingLoader from "./class/game-saving-loader";
 
-console.log('worked');
-
-console.log(sum([1, 2]));
+GameSavingLoader.load().then((saving) => {
+  // saving объект класса GameSaving
+  const data = new GameSaving(JSON.parse(saving));
+  return data;
+}, (error) => {
+  // ...
+  console.log(error);
+});
